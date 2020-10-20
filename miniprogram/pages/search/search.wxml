@@ -1,0 +1,38 @@
+<view>
+  <!-- 设置搜索栏 -->
+  <view class="search">
+    <view class="search_view">
+      <icon type="search"></icon>
+      <input bindinput="inputKey"></input>
+    </view>
+    <text bindtap="toList">搜索</text>
+  </view>
+  <!-- 热门搜索  9个即可 -->
+  <view class="hotsearch">
+    <view class="hotsearch_title">
+      <text>热门搜索</text>
+    </view>
+    <view class="hotsearch_list">
+      <!-- 列表 -->
+      <view wx:for="{{hotList}}" wx:key="_id" bindtap="hotSearch" id="{{item._id}}">{{item.menuName}}</view>
+    </view>
+  </view>
+  <!-- 近期搜索  存入缓存 -->
+  <view class="jqsearch">
+    <view class="jqsearch_title">
+      <text>近期搜索</text>
+    </view>
+    <view class="jqsearch_list">
+      <!-- 列表 -->
+      <block wx:if="{{ keywordArr.length>0}}">
+        <view wx:for="{{keywordArr}}" wx:key="*this" bindtap="recentSearch" data-key="{{item}}">{{item}}</view>
+      </block>
+      <block wx:else>
+        <view>
+          暂无记录
+        </view>
+      </block>
+
+    </view>
+  </view>
+</view>
